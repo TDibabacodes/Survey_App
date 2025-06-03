@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Survey App - Results</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<nav>
+  <a href="index.html">Fill Out Survey</a>
+  <a href="results.html">View Survey Results</a>
+</nav>
+
+<h1>Survey Results</h1>
+<div id="results">
+  <p>Total surveys submitted: <strong id="totalSurveys">Loading...</strong></p>
+  <p>Average age: <strong id="averageAge">Loading...</strong></p>
+  <p>Oldest age: <strong id="oldestAge">Loading...</strong></p>
+  <p>Youngest age: <strong id="youngestAge">Loading...</strong></p>
+
+  <p>Percentage who like Pizza: <strong id="percentagePizza">Loading...</strong>%</p>
+  <p>Percentage who like Pasta: <strong id="percentagePasta">Loading...</strong>%</p>
+  <p>Percentage who like Pap and Wors: <strong id="percentageWors">Loading...</strong>%</p>
+
+  <p>Average movies rating: <strong id="averageMoviesRating">Loading...</strong></p>
+  <p>Average radio rating: <strong id="averageRadioRating">Loading...</strong></p>
+  <p>Average eat out rating: <strong id="averageEatOutRating">Loading...</strong></p>
+
+
+</div>
+
+<script>
+  window.onload = function() {
+    function updateElement(id, value, decimals = null) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (value === null || value === undefined || isNaN(value)) {
+        el.textContent = 'N/A';
+        return;
+      }
+      el.textContent = decimals !== null ? Number(value).toFixed(decimals) : value;
+    }
+
+    fetch('/api/results/totalSurveys')
+      .then(res => res.text())
+      .then(text => updateElement('totalSurveys', Number(text)))
+      .catch(() => updateElement('totalSurveys', null));
+
+    fetch('/api/results/averageAge')
+      .then(res => res.text())
+      .then(text => updateElement('averageAge', Number(text), 2))
+      .catch(() => updateElement('averageAge', null));
+
+    fetch('/api/results/oldestAge')
+      .then(res => res.text())
+      .then(text => updateElement('oldestAge', Number(text)))
+      .catch(() => updateElement('oldestAge', null));
+
+    fetch('/api/results/youngestAge')
+      .then(res => res.text())
+      .then(text => updateElement('youngestAge', Number(text)))
+      .catch(() => updateElement('youngestAge', null));
+
+    fetch('/api/results/percentagePizza')
+      .then(res => res.text())
+      .then(text => updateElement('percentagePizza', Number(text), 2))
+      .catch(() => updateElement('percentagePizza', 0));
+
+    fetch('/api/results/percentagePasta')
+      .then(res => res.text())
+      .then(text => updateElement('percentagePasta', Number(text), 2))
+      .catch(() => updateElement('percentagePasta', 0));
+
+    fetch('/api/results/percentageWors')
+      .then(res => res.text())
+      .then(text => updateElement('percentageWors', Number(text), 2))
+      .catch(() => updateElement('percentageWors', 0));
+
+    fetch('/api/results/averageMoviesRating')
+      .then(res => res.text())
+      .then(text => updateElement('averageMoviesRating', Number(text), 2))
+      .catch(() => updateElement('averageMoviesRating', null));
+
+    fetch('/api/results/averageRadioRating')
+      .then(res => res.text())
+      .then(text => updateElement('averageRadioRating', Number(text), 2))
+      .catch(() => updateElement('averageRadioRating', null));
+
+    fetch('/api/results/averageEatOutRating')
+      .then(res => res.text())
+      .then(text => updateElement('averageEatOutRating', Number(text), 2))
+      .catch(() => updateElement('averageEatOutRating', null));
+
+    fetch('/api/results/countLikeMovies')
+      .then(res => res.text())
+      .then(text => updateElement('countLikeMovies', Number(text)))
+      .catch(() => updateElement('countLikeMovies', 0));
+
+    fetch('/api/results/countLikeRadio')
+      .then(res => res.text())
+      .then(text => updateElement('countLikeRadio', Number(text)))
+      .catch(() => updateElement('countLikeRadio', 0));
+
+    fetch('/api/results/countLikeEatOut')
+      .then(res => res.text())
+      .then(text => updateElement('countLikeEatOut', Number(text)))
+      .catch(() => updateElement('countLikeEatOut', 0));
+  };
+</script>
+</body>
+</html>

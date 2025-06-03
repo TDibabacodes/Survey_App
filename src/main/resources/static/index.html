@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Survey App - Fill Out Survey</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<nav>
+  <a href="index.html">Fill Out Survey</a>
+  <a href="results.html">View Survey Results</a>
+</nav>
+
+<h1>Fill Out the Survey</h1>
+
+<form id="surveyForm" action="/submitSurvey" method="post">
+  <div id="names">
+    <label>
+      <span>Full Name:</span><br />
+      <input type="text" id="fullName" name="fullName" pattern="[A-Za-z\s]+" title="Only letters and spaces allowed" required />
+    </label>
+
+    <label>
+      <span>Contact Number:</span><br />
+      <input type="text" id="contact" name="contact" pattern="\d{1,10}" title="Up to 10 digits" maxlength="10" required />
+    </label>
+
+    <label>
+      <span>Age:</span><br />
+      <input type="number" id="age" name="age" min="5" max="120" required />
+    </label>
+
+    <label>
+      <span>Date:</span><br />
+      <input type="date" id="date" name="date" required />
+    </label>
+  </div>
+
+  <fieldset>
+    <legend>Favourite Food (select all that apply):</legend>
+    <label><input type="checkbox" name="food" value="Pizza" /> Pizza</label>
+    <label><input type="checkbox" name="food" value="Pasta" /> Pasta</label>
+    <label><input type="checkbox" name="food" value="Pap and Wors" /> Pap and Wors</label>
+    <label><input type="checkbox" name="food" value="Other" /> Other</label>
+  </fieldset>
+
+  <fieldset>
+    <legend>
+      Please rate your level of agreement on a scale 1 to 5, with 1 being 'Strongly Agree' and 5 being 'Strongly Disagree'.
+    </legend>
+
+    <table border="1" cellpadding="10">
+      <thead>
+      <tr>
+        <th>Activity</th>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Eat out</td>
+        <td><input type="radio" name="eatOut" value="1" required /></td>
+        <td><input type="radio" name="eatOut" value="2" /></td>
+        <td><input type="radio" name="eatOut" value="3" /></td>
+        <td><input type="radio" name="eatOut" value="4" /></td>
+        <td><input type="radio" name="eatOut" value="5" /></td>
+      </tr>
+      <tr>
+        <td>Watch movies</td>
+        <td><input type="radio" name="movies" value="1" required /></td>
+        <td><input type="radio" name="movies" value="2" /></td>
+        <td><input type="radio" name="movies" value="3" /></td>
+        <td><input type="radio" name="movies" value="4" /></td>
+        <td><input type="radio" name="movies" value="5" /></td>
+      </tr>
+      <tr>
+        <td>Watch TV</td>
+        <td><input type="radio" name="tv" value="1" required /></td>
+        <td><input type="radio" name="tv" value="2" /></td>
+        <td><input type="radio" name="tv" value="3" /></td>
+        <td><input type="radio" name="tv" value="4" /></td>
+        <td><input type="radio" name="tv" value="5" /></td>
+      </tr>
+      <tr>
+        <td>Listen to the radio</td>
+        <td><input type="radio" name="radio" value="1" required /></td>
+        <td><input type="radio" name="radio" value="2" /></td>
+        <td><input type="radio" name="radio" value="3" /></td>
+        <td><input type="radio" name="radio" value="4" /></td>
+        <td><input type="radio" name="radio" value="5" /></td>
+      </tr>
+      </tbody>
+    </table>
+  </fieldset>
+
+  <button type="submit">Submit</button>
+</form>
+</body>
+</html>
